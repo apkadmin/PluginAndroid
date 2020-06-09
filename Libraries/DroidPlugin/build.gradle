@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    compileOnly fileTree(dir: 'lib', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig{
+        def authorityName = "com.morgoo.droidplugin_stub"
+        minSdkVersion 9
+        versionCode 1
+        versionName '1.0'
+
+        buildConfigField "String", "AUTHORITY_NAME", "\"${authorityName}\""
+        manifestPlaceholders = [
+            authorityName:"${authorityName}",
+        ]
+    }
+
+}
