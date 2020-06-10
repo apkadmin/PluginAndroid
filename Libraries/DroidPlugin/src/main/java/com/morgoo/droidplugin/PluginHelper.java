@@ -98,7 +98,7 @@ public class PluginHelper implements ServiceConnection {
             } catch (Throwable e) {
                 Log.e(TAG, "installHook has error", e);
             }
-
+            System.out.println("khongcoloi");
 
         } finally {
             Log.i(TAG, "Init plugin in process cost %s ms", (System.currentTimeMillis() - b));

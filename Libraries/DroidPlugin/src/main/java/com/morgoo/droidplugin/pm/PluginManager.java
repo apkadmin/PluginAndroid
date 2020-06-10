@@ -87,7 +87,7 @@ public class PluginManager implements ServiceConnection {
 
     private static final String TAG = PluginManager.class.getSimpleName();
 
-
+    private PluginManager(){};
     private Context mHostContext;
     private static PluginManager sInstance = null;
 
@@ -96,6 +96,7 @@ public class PluginManager implements ServiceConnection {
     @Override
     public void onServiceConnected(final ComponentName componentName, final IBinder iBinder) {
         mPluginManager = IPluginManager.Stub.asInterface(iBinder);
+        System.out.println("onserviceconnected");
         new Thread() {
             @Override
             public void run() {
@@ -876,13 +877,17 @@ public class PluginManager implements ServiceConnection {
                 return result;
             } else {
                 Log.w(TAG, "Plugin Package Manager Service not be connect");
+
+                return -2;
             }
         } catch (RemoteException e) {
             throw e;
+
         } catch (Exception e) {
             Log.e(TAG, "forceStopPackage", e);
+
+            return -3;
         }
-        return -1;
     }
 
     public List<String> getPackageNameByPid(int pid) throws RemoteException {
